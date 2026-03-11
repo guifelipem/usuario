@@ -1,6 +1,7 @@
 package com.javanauta.usuario.controller;
 
 import com.javanauta.usuario.infrastructure.exceptions.ConflictException;
+import com.javanauta.usuario.infrastructure.exceptions.IllegalArgumentException;
 import com.javanauta.usuario.infrastructure.exceptions.ResourceNotFoundException;
 import com.javanauta.usuario.infrastructure.exceptions.UnauthorizedException;
 import org.springframework.http.HttpStatus;
@@ -26,4 +27,8 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(exception.getMessage(), HttpStatus.CONFLICT);
     }
 
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<String> handleIllegalArgumentException(IllegalArgumentException exception) {
+        return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);
+    }
 }
