@@ -3,6 +3,8 @@ package com.javanauta.usuario.infrastructure.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.io.Serializable;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -10,7 +12,7 @@ import lombok.*;
 @Entity
 @Table(name = "endereco")
 @Builder
-public class Endereco {
+public class Endereco implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,5 +30,5 @@ public class Endereco {
     @Column(name = "cep", length = 9)
     private String cep;
     @Column(name = "usuario_id")
-    private Long usuario_id;
+    private Long usuarioId;
 }

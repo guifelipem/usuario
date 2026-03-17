@@ -139,7 +139,7 @@ public class UsuarioConverter {
                 .estado(enderecoDTO.getEstado())
                 .numero(enderecoDTO.getNumero())
                 .complemento(enderecoDTO.getComplemento())
-                .usuario_id(idUsuario)
+                .usuarioId(idUsuario)
                 .build();
     }
 
@@ -147,7 +147,7 @@ public class UsuarioConverter {
         return Telefone.builder()
                 .numero(telefoneDTO.getNumero())
                 .ddd(telefoneDTO.getDdd())
-                .usuario_id(idUsuario)
+                .usuarioId(idUsuario)
                 .build();
     }
 }
