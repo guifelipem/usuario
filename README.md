@@ -1,84 +1,71 @@
-
 # API de Usuários
 
-API REST desenvolvida com **Spring Boot 3** para gerenciamento de usuários, autenticação com JWT e consulta automática de endereços utilizando a API do ViaCEP.
+A API de Usuários é responsável pelo gerenciamento de identidade da aplicação. O serviço realiza cadastro e autenticação de usuários, além do gerenciamento de informações pessoais utilizadas pelos demais microsserviços do sistema.
+
+## Arquitetura
+
+Este serviço faz parte do sistema de Agendamento de Tarefas, composto pelos seguintes microsserviços:
+
+- API de Usuários
+- API de Agendamento de Tarefas
+- Serviço de Notificação
+- Backend for Frontend (BFF)
 
 ## Tecnologias
 
 - Java 21
-- Spring Boot 3.5
-- Spring Security + JWT
+- Spring Boot
+- Spring Security
 - Spring Data JPA
 - PostgreSQL
+- JWT
 - OpenFeign
 - Swagger / OpenAPI
 - Lombok
-- Docker / Docker Compose
+- Docker
 
-## Funcionalidades
+## Responsabilidades
 
 - Cadastro de usuários
-- Login com autenticação JWT
-- Consulta de usuário por e-mail
-- Cadastro de endereços e telefones
-- Busca automática de endereço pelo CEP (ViaCEP)
+- Autenticação utilizando JWT
+- Consulta de usuários
+- Gerenciamento de endereços e telefones
+- Consulta automática de endereços via ViaCEP
+- Documentação da API com Swagger/OpenAPI
 - Tratamento global de exceções
-- Documentação da API com Swagger
 
 ## Estrutura do projeto
 
-```
+```text
 src/main/java
-├── business           # Regras de negócio
-├── controller         # Endpoints REST
+├── business
+├── controller
 ├── infrastructure
-│   ├── clients        # Cliente ViaCEP
-│   ├── entity         # Entidades JPA
-│   ├── repository     # Repositórios
-│   ├── security       # JWT e configuração de segurança
-│   └── exceptions     # Tratamento de erros
+├── mapper
+├── repository
+└── dto
 ```
 
-## Configuração
+## Como executar
 
-Configure o banco PostgreSQL em `application.properties`:
+### Requisitos
 
-```properties
-spring.datasource.url=jdbc:postgresql://localhost:5432/db_usuario
-spring.datasource.username=postgres
-spring.datasource.password=senha123
-```
+- Java 21
+- PostgreSQL
+- Docker (opcional)
 
-## Executando
+### Executando
 
 ```bash
-docker-compose up -d
 ./gradlew bootRun
 ```
 
-Ou:
-
-```bash
-./gradlew build
-java -jar build/libs/usuario-0.0.1-SNAPSHOT.jar
-```
-
-## Endpoints principais
-
-| Método | Endpoint | Descrição |
-|--------|----------|-----------|
-| POST | `/usuario` | Cadastrar usuário |
-| POST | `/usuario/login` | Realizar login |
-| GET | `/usuario?email=` | Buscar usuário por e-mail |
-
-## Documentação
-
-Após iniciar a aplicação:
+A documentação da API estará disponível em:
 
 ```
 http://localhost:8080/swagger-ui/index.html
 ```
 
-## Autor
+## Integração
 
-Desenvolvido por Guilherme Felipe.
+Este serviço fornece autenticação e informações de usuários para os demais microsserviços do sistema através de APIs REST.
